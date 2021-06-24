@@ -1,21 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import ChevronLeftOutlinedIcon from "@material-ui/icons/ChevronLeftOutlined";
-import ChevronRightOutlinedIcon from "@material-ui/icons/ChevronRightOutlined";
+import MenuIcon from "@material-ui/icons/Menu";
+import CloseIcon from "@material-ui/icons/Close";
 import SearchIcon from "@material-ui/icons/Search";
 import SmsOutlinedIcon from "@material-ui/icons/SmsOutlined";
 import NotificationsOutlinedIcon from "@material-ui/icons/NotificationsOutlined";
 import { Avatar } from "@material-ui/core";
 
 function Header() {
+  const [burgerMenu, setBurgerMenu] = useState(false);
   return (
     <Container>
       <Left>
-        <ChevronIcon>
-          <ChevronLeftOutlinedIcon className="active" />
-          <ChevronRightOutlinedIcon />
-        </ChevronIcon>
+        <Menu>
+          <CustomMenu onClick={() => setBurgerMenu(true)} />
+        </Menu>
 
+        <BurgerNav show={burgerMenu}>
+          <CloseWrapper>
+            <CustomClose onClick={() => setBurgerMenu(false)} />
+          </CloseWrapper>
+
+          <li>
+            <a href="#">Existing Inventory</a>
+          </li>
+          <li>
+            <a href="#">Used Inventory</a>
+          </li>
+          <li>
+            <a href="#">Trade-in</a>
+          </li>
+          <li>
+            <a href="#">Cybertruck</a>
+          </li>
+          <li>
+            <a href="#">Roadastar</a>
+          </li>
+
+          <li>
+            <a href="#">Charging</a>
+          </li>
+          <li>
+            <a href="#">Commercial Energy</a>
+          </li>
+        </BurgerNav>
         <Search>
           <SearchIcon />
           <input type="text" placeholder="Search" />
@@ -33,7 +61,7 @@ function Header() {
 const Container = styled.div`
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 90;
   padding: 20px 10px;
   display: flex;
   justify-content: space-between;
@@ -47,16 +75,46 @@ const Left = styled.div`
   margin-left: 13px;
 `;
 
-const ChevronIcon = styled.div`
-  .active {
-    color: #f5f5ff !important;
-  }
+const Menu = styled.div``;
 
-  .MuiSvgIcon-root {
-    font-size: 25px !important;
-    margin-left: 3px;
-    color: #717489 !important;
+const CustomMenu = styled(MenuIcon)`
+  cursor: pointer;
+  color: #f1f7f8;
+`;
+const BurgerNav = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  width: 300px;
+  padding: 20px;
+  display: none;
+  flex-direction: column;
+  text-align: start;
+  /* transform: ${(props) =>
+    props.show ? "translateX(0)" : "translateX(100%)"}; */
+  transition: transform 0.3s ease-in-out;
+  li {
+    list-style: none;
+    padding: 15px 0;
+    border-bottom: 1px solid #f1f4ff;
+
+    a {
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #f1f4ff;
+    }
   }
+`;
+
+const CloseWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+const CustomClose = styled(CloseIcon)`
+  color: white;
+  cursor: pointer;
 `;
 
 const Search = styled.div`
@@ -99,4 +157,5 @@ const Right = styled.div`
 const User = styled(Avatar)`
   margin-left: 20px;
 `;
+
 export default Header;
