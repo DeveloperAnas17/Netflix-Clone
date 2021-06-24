@@ -69,8 +69,7 @@ function Sidebar() {
 const Container = styled.div`
   flex: 0.2;
   height: 100%;
-  min-width: 150px;
-  /* border-right: 1px solid gray; */
+  border-right: 1px solid gray;
   padding: 20px 30px;
   height: 100%;
 
