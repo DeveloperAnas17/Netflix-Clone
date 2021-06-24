@@ -3,6 +3,7 @@ import axios from "../axios";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
 import styled from "styled-components";
+import ThumbUpOutlinedIcon from "@material-ui/icons/ThumbUpOutlined";
 
 const base_url = "https://image.tmdb.org/t/p/original";
 
@@ -56,7 +57,6 @@ function Originals({ title, fetchUrl, isLargeRow }) {
               }`}
               alt={movie.name}
             />
-            <h3>{movie.name}</h3>
           </Wrap>
         ))}
       </Content>
@@ -101,14 +101,6 @@ const Wrap = styled.div`
   transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
   border: 3px solid rgba(249, 249, 249, 0.1);
 
-  h3 {
-    position: absolute;
-    top: 20px;
-    padding: 20px;
-    z-index: 1;
-    color: red;
-    font-weight: bold;
-  }
   img {
     inset: 0px;
     display: block;
@@ -118,7 +110,7 @@ const Wrap = styled.div`
     position: absolute;
     transition: opacity 500ms ease-in-out 0s;
     width: 100%;
-    z-index: -20;
+    z-index: 10;
     top: 0;
 
     .row-poster {
@@ -139,4 +131,5 @@ const Wrap = styled.div`
     border-color: rgba(249, 249, 249, 0.8);
   }
 `;
+
 export default Originals;

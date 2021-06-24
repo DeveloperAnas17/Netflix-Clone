@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "../axios";
 import requests from "../requests";
 import styled from "styled-components";
+import Truncate from "react-truncate";
 
 function Banner() {
   const [movie, setMovie] = useState([]);
@@ -43,8 +44,11 @@ function Banner() {
         </Buttons>
 
         <p className="banner__description">
-          {truncate(movie?.overview, 150)}
-          {movie?.overview}
+          {/* {truncate(movie?.overview, 150)}
+          {movie?.overview} */}
+          <Truncate lines={3} ellipsis={<span>...</span>}>
+            {movie?.overview}
+          </Truncate>
         </p>
       </Content>
       <div className="banner--fadeBottom" />
